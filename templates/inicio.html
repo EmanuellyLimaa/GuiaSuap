@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title> GuiaSuap </title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <header>
+        <img src="{% static 'img/logomarca.png' %}" 
+             alt="Logo GuiaSuap">
+    </header>
+
+    <main>
+        <h1> Desbravando o SUAP sem mistérios </h1>
+
+        <a href="{% url 'cadastro' %}"> Criar conta </a>
+    </main>
+
+</body>
+</html>

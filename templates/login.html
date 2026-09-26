@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,131 @@
     <link rel="stylesheet" href="{% load static 'css/style.css' %}">
 
 </head>
-<body>
-    
+
+<body class="login-page">
+    <div class="login-card">
+
+        <section class="login-left">
+
+            <div class="brand">
+                <img src="{% load static 'static/img/logomarca.png' %}" alt="Logo do GuiaSuap">
+            </div>
+
+            <p class="brand-description"> Acesse sua conta e continue aprendendo com os nosso tutoriais,
+                e tirando dúvidas </p>
+
+            <div class="login-illustration">
+                <div class="computer"> 💻 </div>
+
+                <div class="lock"> 🔒 </div>
+            </div>
+
+            <div class="benefit">
+                <div class="benefit-icon"> ▶ </div>
+            </div>
+
+            <div>
+                <strong> Tutoriais em vídeos </strong>
+                <p> Aprenda de froma fácil e prática </p>
+            </div>
+            
+            <div class="benefits">
+
+                <div class="benefit">
+                    <div class="benefit-icon"> 👥 </div>
+                    <div>
+                        <strong> Comunidade ativa </strong>
+                        <p> Tire dúvidas e ajude outros alunos </p>
+                    </div>
+                </div>
+
+                 <div class="benefit">
+                    <div class="benefit-icon"> ••• </div>
+                    <div>
+                        <strong> Dicas e sugestões </strong>
+                        <p> Contribua e compartilhe experiências </p>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                <div class="benefit-icon"> ✓ </div>
+                <div>
+                    <strong> Seguro e confiável </strong>
+                    <p> Seus dados protegidos com segurança </p>
+                </div>
+            </div>
+
+            <p class="register-text">
+                Ainda não tem uma conta? 
+            <a href="{% url 'cadastro' %}"> Cadastre-se </a></p>
+        </section>
+
+        <!-- Lado Direto da tela-->
+        <section class="login-rigth">
+            <div class="login-content">
+                <h1> Login </h1>
+                <p class="login-subtitle"> Entre com a sua conta para acessar<br> o <strong> GuiaSuap.</strong>
+                </p>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="email"> E-mail institucional ou usuário</label>
+
+                        <div class="input-container">
+                            <span class="input-icon"> ♙ </span>
+                            <input type="text" id="email" name="email" 
+                            placeholder="Digite o seu email institucional ou usuário" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senha"> Senha </label>
+
+                        <div class="input-container">
+                            <span class="input-icon"> 🔒</span>
+                            <input type="password" id="senha" name="senha" placeholder="Digite a sua senha" required> 
+
+                            <button type="button" class="show-password" onclick="mostrarSenha()"> ◉</button> 
+                        </div>
+                    </div>
+
+                     <div class="login-options">
+                        <label class="remember">
+                            <input type="checkbox" name="lembrar">
+                            <span> Lembrar de mim </span>
+                        </label>
+                        <a href="#" class="forgot-password"> Esqueceu a seha? </a>
+                     </div>
+
+                     <button type="submit" class="login-button"> 🔒 &nbsp; Entrar </button>
+
+                     <div class="divider">
+                        <span></span>
+                        <p> Ou </p>
+                        <span></span>
+                     </div>
+
+                     <button type="button" class="google-button">
+                        <span class="google-icon"> G </span>
+                        Entrar com Google
+                     </button>
+
+                     <div class="security-message">
+                        <div class="security-icon"> ♢ </div>
+
+                        <p> Seus dados estão protegidos<br> com segurança.</p>
+                     </div>
+
+                </form>
+
+            </div>
+        </section>
+    </div>
+
+    <script src="{% static 'static/js/script.js' %}"></script>
+
 </body>
+
 </html>

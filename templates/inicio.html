@@ -5,24 +5,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title> GuiaSuap </title>
-
-    <link rel="stylesheet" href="{% static 'static/css/style.css' %}">
+    <title>Início - GuiaSuap</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+<body class="inicio-page">
 
-<body>
+    <main class="inicio-card">
+        <div class="inicio-brand">
+            <img
+                src="{% static 'img/logomarca.png' %}"
+                alt="Logo GuiaSuap">
+        </div>
 
-    <header>
-        <img src="{% static 'static/img/logomarca.png' %}" 
-             alt="Logo GuiaSuap">
-    </header>
+        <div class="inicio-content">
+            <h1>
+                Desbravando o
+                <span>SUAP</span>
+                sem mistérios
+            </h1>
 
-    <main>
-        <h1> Desbravando o SUAP sem mistérios </h1>
+            <p class="inicio-description">
+                Aprenda a utilizar o SUAP de forma fácil,
+                rápida e prática através de tutoriais,
+                dicas e conteúdos preparados para você.
+            </p>
 
-        <a href="{% url 'cadastro' %}"> Criar conta </a>
+            <a
+                href="{% url 'login' %}"
+                class="inicio-button">
+                Começar agora
+            </a>
+
+            <div class="inicio-benefits">
+                <div class="inicio-benefit">
+                    <div class="inicio-benefit-icon">
+                        ▶
+                    </div>
+
+                    <div>
+                        <strong>Tutoriais em vídeos</strong>
+
+                        <p>
+                            Aprenda de forma fácil e prática.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="inicio-benefit">
+                    <div class="inicio-benefit-icon">
+                        ?
+                    </div>
+
+                    <div>
+                        <strong>Tire suas dúvidas</strong>
+
+                        <p>
+                            Encontre respostas para suas dúvidas.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="inicio-benefit">
+                    <div class="inicio-benefit-icon">
+                        ✓
+                    </div>
+
+                    <div>
+                        <strong>Dicas e sugestões</strong>
+                        <p>
+                            Aproveite dicas para usar o SUAP.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="inicio-login">
+                Já possui uma conta?
+
+                <a href="{% url 'login' %}">
+                    Entrar
+                </a>
+            </p>
+        </div>
     </main>
-
 </body>
 </html>

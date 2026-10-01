@@ -18,8 +18,8 @@ def login(request):
 
         usuario = authenticate(
             request,
-            username=email
-            password=senha
+            username= email
+            password= senha
         )
 
         if usuario is not None:
@@ -31,6 +31,15 @@ def login(request):
                 request,
                 'E-mail ou senha incorretos'
             )
+        return render(request, 'login.html')
+
+def logout_usuarios(request):
+    logout(request)
+    return redirect('login')
+
+@login_required
+def tutoriais(request):
+    return render(request, 'tutoriais.html')
  
 
 def base(request):

@@ -13,12 +13,12 @@ def cadastro(request):
 def login(request):
     if request.method == 'POST':
 
-        email = request.post.get('email')
-        senha = request.post.get('senha')
+        email = request.POST.get('email')
+        senha = request.POST.get('senha')
 
         usuario = authenticate(
             request,
-            username= email
+            username= email,
             password= senha
         )
 

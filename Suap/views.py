@@ -44,3 +44,6 @@ def tutoriais(request):
 
 def base(request):
     return render(request, 'base.html')
+
+def login_administrador(request):
+    return render(request, 'login_adminstrador.html')

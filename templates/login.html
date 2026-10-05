@@ -19,8 +19,9 @@
                 <img src="{%static 'img/logomarca.png' %}" alt="Logo do GuiaSuap">
             </div>
 
-            <p class="brand-description"> Acesse sua conta e continue aprendendo com os nosso tutoriais,
-                e tirando dúvidas </p>
+            <p class="brand-description"> Acesse sua conta e continue aprendendo 
+                com os nosso tutoriais, e tirando dúvidas 
+            </p>
 
             <div class="login-illustration">
                 <div class="computer"> 💻 </div>
@@ -34,7 +35,7 @@
 
             <div>
                 <strong> Tutoriais em vídeos </strong>
-                <p> Aprenda de froma fácil e prática </p>
+                <p> Aprenda de forma fácil e prática </p>
             </div>
             
             <div class="benefits">
@@ -99,32 +100,39 @@
                         </div>
                     </div>
 
-                     <div class="login-options">
+                    <div class="login-options">
                         <label class="remember">
                             <input type="checkbox" name="lembrar">
                             <span> Lembrar de mim </span>
                         </label>
                         <a href="#" class="forgot-password"> Esqueceu a seha? </a>
-                     </div>
+                    </div>
 
-                     <button type="submit" class="login-button"> 🔒 &nbsp; Entrar </button>
+                    <button type="submit" class="login-button"> 🔒 &nbsp; Entrar </button>
 
-                     <div class="divider">
+                    <div class="divider">
                         <span></span>
                         <p> Ou </p>
                         <span></span>
-                     </div>
+                    </div>
 
-                     <button type="button" class="google-button">
+                    <button type="button" class="google-button">
                         <span class="google-icon"> G </span>
-                        Entrar com Google
-                     </button>
+                         Google
+                    </button>
 
-                     <div class="security-message">
+                    <p class="admin-access">
+                        Acesso administrativo?
+                        <a href="{% url 'login_administrador' %}">
+                            Entrar como administrador
+                        </a>
+                    </p>
+
+                    <div class="security-message">
                         <div class="security-icon"> ♢ </div>
 
                         <p> Seus dados estão protegidos<br> com segurança.</p>
-                     </div>
+                    </div>
                 </form>
             </div>
         </section>

@@ -70,9 +70,88 @@
                 <div class="admin-icon">
                     🔐
                 </div>
+
+                <h1> Login do Administrador </h1>
+
+                <p class="admin-subtilite"> Entre com suas credenciais para 
+                    acessar a área administrativa. 
+                </p>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                <!-- usuário-->
+                 <div class="admin-form-group">
+
+                    <label for="username"> Usuário ou E-mail</label>
+
+                    <div class="admin-input-container">
+                        <span class="admin-input-icon">
+                            ♙
+                        </span>
+
+                        <input type="text" id="username" name="username"
+                        placeholder="Digite seu usuário ou e-mail" required>
+                    </div>
+                 </div>
+
+                 <!--senha-->
+                 <div class="admin-form-group">
+                    <label for="password"> Senha </label>
+
+                    <div class="admin-input-container">
+                        <span class="admin-input-icon">
+                            🔒
+                        </span>
+
+                        <input type="password" 
+                        id="password" 
+                        name="password"
+                        placeholder="Digite sua senha" 
+                        required>
+                    </div>
+                 </div>
+
+                <!-- LEMBRAR -->
+                    <div class="admin-options">
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                name="lembrar"
+                            >
+                            <span> Lembrar de mim</span>
+                        </label>
+                        <a href="#"> Esqueceu a senha? </a>
+                    </div>
+
+                <!-- BOTÃO -->
+                    <button
+                        type="submit"
+                        class="admin-login-button"
+                    >
+                        🔐 &nbsp; Entrar
+                    </button>
+                </form>
+
+                    <div class="admin-security">
+
+                        <span>🛡️</span>
+                        <p> Áre restrista aos adminstradores. 
+                        <br>
+                        Seus dados estão protegidos.
+                        </p>
+                    </div>
+
+
+                    <p class="back-login">
+                        <a href="{% url 'login' %}">
+                        ← Voltar para o login
+                        </a>
+                    </p>
             </div>
         </section>
-
+    </div>
     
 </body>
 </html>

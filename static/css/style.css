@@ -693,3 +693,567 @@ body.login-page {
         font-size: 32px;
     }
 }
+
+
+/* =========================================================
+   LOGIN DO ADMINISTRADOR
+========================================================= */
+
+.admin-login-page {
+
+    min-height: 100vh;
+
+    margin: 0;
+
+    background: #eef7f0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 40px;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* CARTÃO */
+
+.admin-login-card {
+
+    width: 100%;
+
+    max-width: 1050px;
+
+    min-height: 650px;
+
+    background: #ffffff;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    display: grid;
+
+    grid-template-columns: 42% 58%;
+
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================================
+   LADO ESQUERDO
+========================================================= */
+
+.admin-login-left {
+
+    background: #f8fbf9;
+
+    padding: 55px 45px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+
+.admin-brand img {
+
+    width: 230px;
+
+    max-width: 100%;
+
+    height: auto;
+
+    margin-bottom: 30px;
+}
+
+
+.admin-login-left h2 {
+
+    font-size: 27px;
+
+    color: #111111;
+
+    margin: 0 0 12px;
+}
+
+
+.admin-login-left h2::after {
+
+    content: "";
+
+    display: block;
+
+    width: 65px;
+
+    height: 3px;
+
+    background: #078c38;
+
+    margin: 15px auto 0;
+
+    border-radius: 10px;
+}
+
+
+.admin-login-left > p {
+
+    max-width: 330px;
+
+    color: #555555;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================================================
+   BENEFÍCIOS
+========================================================= */
+
+.admin-features {
+
+    width: 100%;
+
+    max-width: 350px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+
+.admin-feature {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    text-align: left;
+}
+
+
+.admin-feature-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background: #edf7f0;
+
+    color: #078c38;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: bold;
+}
+
+
+.admin-feature strong {
+
+    display: block;
+
+    color: #111111;
+
+    font-size: 14px;
+
+    margin-bottom: 4px;
+}
+
+
+.admin-feature p {
+
+    margin: 0;
+
+    color: #666666;
+
+    font-size: 12px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   LADO DIREITO
+========================================================= */
+
+.admin-login-right {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 55px;
+}
+
+
+.admin-login-content {
+
+    width: 100%;
+
+    max-width: 470px;
+}
+
+
+.admin-icon {
+
+    width: 55px;
+
+    height: 55px;
+
+    background: #edf7f0;
+
+    border-radius: 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
+
+    margin-bottom: 20px;
+}
+
+
+.admin-login-content h1 {
+
+    font-size: 34px;
+
+    color: #111111;
+
+    margin: 0 0 12px;
+}
+
+
+.admin-subtitle {
+
+    color: #666666;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+    margin-bottom: 35px;
+}
+
+
+/* =========================================================
+   FORMULÁRIO
+========================================================= */
+
+.admin-form-group {
+
+    margin-bottom: 22px;
+}
+
+
+.admin-form-group label {
+
+    display: block;
+
+    color: #222222;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    margin-bottom: 9px;
+}
+
+
+.admin-input-container {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+}
+
+
+.admin-input-icon {
+
+    position: absolute;
+
+    left: 17px;
+
+    font-size: 19px;
+
+    z-index: 1;
+}
+
+
+.admin-input-container input {
+
+    width: 100%;
+
+    height: 58px;
+
+    padding: 0 18px 0 52px;
+
+    border: 1px solid #d7d7d7;
+
+    border-radius: 11px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition: 0.2s;
+}
+
+
+.admin-input-container input:focus {
+
+    border-color: #078c38;
+
+    box-shadow:
+        0 0 0 3px rgba(7, 140, 56, 0.10);
+}
+
+
+/* =========================================================
+   OPÇÕES
+========================================================= */
+
+.admin-options {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin: 5px 0 25px;
+
+    font-size: 13px;
+}
+
+
+.admin-options label {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #444444;
+}
+
+
+.admin-options input {
+
+    width: 17px;
+
+    height: 17px;
+}
+
+
+.admin-options a {
+
+    color: #078c38;
+
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+
+.admin-options a:hover {
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   BOTÃO
+========================================================= */
+
+.admin-login-button {
+
+    width: 100%;
+
+    height: 58px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background: #078c38;
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+
+.admin-login-button:hover {
+
+    background: #056d2b;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   SEGURANÇA
+========================================================= */
+
+.admin-security {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 30px;
+
+    padding-top: 25px;
+
+    border-top: 1px solid #eeeeee;
+
+    color: #555555;
+
+    text-align: center;
+}
+
+
+.admin-security span {
+
+    font-size: 25px;
+}
+
+
+.admin-security p {
+
+    margin: 0;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   VOLTAR
+========================================================= */
+
+.back-login {
+
+    text-align: center;
+
+    margin-top: 25px;
+}
+
+
+.back-login a {
+
+    color: #078c38;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+
+.back-login a:hover {
+
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .admin-login-card {
+
+        grid-template-columns: 1fr;
+    }
+
+    .admin-login-left {
+
+        padding: 40px 30px;
+    }
+
+    .admin-login-right {
+
+        padding: 40px 30px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .admin-login-page {
+
+        padding: 15px;
+    }
+
+    .admin-login-left,
+    .admin-login-right {
+
+        padding: 30px 20px;
+    }
+
+    .admin-login-content h1 {
+
+        font-size: 28px;
+    }
+
+    .admin-options {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
+    }
+
+}

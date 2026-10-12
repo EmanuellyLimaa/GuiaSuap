@@ -1,118 +1,143 @@
-{% load static %}
 
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Login Administrador - GuiaSuap </title>
+    <title>Login do Administrador - GuiaSuap</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-
 </head>
 <body class="admin-login-page">
-    <div class="amin-login-card">
 
-<!-- lado esquerdo -->
+    <div class="admin-login-card">
+
+        <!-- Lado esquerdo -->
         <section class="admin-login-left">
 
             <div class="brand">
-                <img src="{%static 'img/logomarca.png' %}" alt="Logo do GuiaSuap">
+                <img
+                    src="{% static 'img/logomarca.png' %}"
+                    alt="Logo do GuiaSuap"
+                >
             </div>
 
-            <h2> Área administrativa </h2>
+            <h2>Área administrativa</h2>
 
-            <p> Gerencie os conteúdos e recursos do GuiaSuap de forma segura.</p>
-
-            <div class="admin-features">
-                <div class="admin-features">
-                    <div class="admin-features-icon">
-                         ✓
-                    </div>
-                </div>
-
-                <div>
-                    <strong> Gerencie conteúdos </strong>
-
-                    <p> Adicione e atualize tutoriais.</p>
-                </div>
-            </div>
+            <p>
+                Gerencie os conteúdos e recursos do GuiaSuap
+                de forma segura.
+            </p>
 
             <div class="admin-features">
-                <div class="admin-features-icon">
-                     ✓
-                </div>
+
+                <div class="admin-features-icon">✓</div>
 
                 <div>
-                    <strong> Gerencie usuários </strong>
-
-                    <p> Controle o acesso administrativo. </p>
+                    <strong>Gerencie conteúdos</strong>
+                    <p>Adicione e atualize tutoriais.</p>
                 </div>
+
             </div>
 
             <div class="admin-features">
-                <div class="admin-features-icon">
-                     ✓
-                </div>
+
+                <div class="admin-features-icon">✓</div>
 
                 <div>
-                    <strong> Administrar o sistema </strong>
-
-                    <p> Matenha o GuiaSuap organizado. </p>
+                    <strong>Gerencie usuários</strong>
+                    <p>Controle o acesso administrativo.</p>
                 </div>
+
             </div>
+
+            <div class="admin-features">
+
+                <div class="admin-features-icon">✓</div>
+
+                <div>
+                    <strong>Administre o sistema</strong>
+                    <p>Mantenha o GuiaSuap organizado.</p>
+                </div>
+
+            </div>
+
         </section>
 
-        <!--lado direito--->
+        <!-- Lado direito -->
         <section class="admin-login-right">
 
             <div class="admin-login-content">
 
-                <div class="admin-icon">
-                    🔐
-                </div>
+                <div class="admin-icon">🔐</div>
 
-                <h1> Login do Administrador </h1>
+                <h1>Login do Administrador</h1>
 
-                <p class="admin-subtilite"> Entre com suas credenciais para 
-                    acessar a área administrativa. 
+                <p class="admin-subtitle">
+                    Entre com suas credenciais para acessar
+                    a área administrativa.
                 </p>
 
-                <form method="POST">
+                <!-- Mensagens de sucesso ou erro -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="mensagem-login">
+                            {{ message }}
+                        </p>
+                    {% endfor %}
+                {% endif %}
+
+                <!-- Formulário de autenticação -->
+                <form method="post">
                     {% csrf_token %}
 
-                <!-- usuário-->
-                 <div class="admin-form-group">
+                    <!-- E-mail -->
+                    <div class="admin-form-group">
 
-                    <label for="username"> Usuário ou E-mail</label>
+                        <label for="email">
+                            E-mail administrativo
+                        </label>
 
-                    <div class="admin-input-container">
-                        <span class="admin-input-icon">
-                            ♙
-                        </span>
+                        <div class="admin-input-container">
 
-                        <input type="text" id="username" name="username"
-                        placeholder="Digite seu usuário ou e-mail" required>
+                            <span class="admin-input-icon">♙</span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Digite seu e-mail"
+                                autocomplete="username"
+                                required
+                            >
+
+                        </div>
+
                     </div>
-                 </div>
 
-                 <!--senha-->
-                 <div class="admin-form-group">
-                    <label for="password"> Senha </label>
+                    <!-- Senha -->
+                    <div class="admin-form-group">
 
-                    <div class="admin-input-container">
-                        <span class="admin-input-icon">
-                            🔒
-                        </span>
+                        <label for="senha">Senha</label>
 
-                        <input type="password" 
-                        id="password" 
-                        name="password"
-                        placeholder="Digite sua senha" 
-                        required>
+                        <div class="admin-input-container">
+
+                            <span class="admin-input-icon">🔒</span>
+
+                            <input
+                                type="password"
+                                id="senha"
+                                name="senha"
+                                placeholder="Digite sua senha"
+                                autocomplete="current-password"
+                                required
+                            >
+
+                        </div>
+
                     </div>
-                 </div>
 
-                <!-- LEMBRAR -->
+                    <!-- Opções -->
                     <div class="admin-options">
 
                         <label>
@@ -120,38 +145,47 @@
                                 type="checkbox"
                                 name="lembrar"
                             >
-                            <span> Lembrar de mim</span>
+                            <span>Lembrar de mim</span>
                         </label>
-                        <a href="#"> Esqueceu a senha? </a>
+
+                        <a href="#">
+                            Esqueceu a senha?
+                        </a>
+
                     </div>
 
-                <!-- BOTÃO -->
+                    <!-- Botão -->
                     <button
                         type="submit"
                         class="admin-login-button"
                     >
                         🔐 &nbsp; Entrar
                     </button>
+
                 </form>
 
-                    <div class="admin-security">
+                <!-- Aviso de segurança -->
+                <div class="admin-security">
 
-                        <span>🛡️</span>
-                        <p> Áre restrista aos adminstradores. 
+                    <span>🛡️</span>
+
+                    <p>
+                        Área restrita aos administradores.
                         <br>
                         Seus dados estão protegidos.
-                        </p>
-                    </div>
-
-
-                    <p class="back-login">
-                        <a href="{% url 'login' %}">
-                        ← Voltar para o login
-                        </a>
                     </p>
+
+                </div>
+
+                <!-- Voltar ao login do aluno -->
+                <p class="back-login">
+                    <a href="{% url 'login' %}">
+                        ← Voltar para o login
+                    </a>
+                </p>
             </div>
         </section>
     </div>
-    
+
 </body>
 </html>

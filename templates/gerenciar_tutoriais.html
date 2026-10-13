@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Gerenciar tutoriais - GuiaSuap </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="paginas-cadastro">
+    <main class="cadastro-container" style="max-width: 900px;">
+        <div class="logo">
+            <h1>Guia<span>Suap</span></h1>
+            <p> Painel administrativo </p>
+        </div>
+
+        <h2>Gerenciar tutoriais</h2>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p class="mensagem {{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <p style="margin: 20px 0;">
+            <a class="botao-cadastro" href="{% url 'criar_tutorial' %}">
+                + Cadastrar tutorial
+            </a>
+        </p>
+
+        {% for tutorial in tutoriais %}
+            <article style="padding: 20px 0; border-bottom: 1px solid #dfe7e1;">
+                <h3>{{ tutorial.titulo }}</h3>
+                <p>{{ tutorial.descricao|linebreaksbr }}</p>
+
+                <p>
+                    Situação:
+                    {% if tutorial.publicado %}
+                        <strong>Publicado</strong>
+                    {% else %}
+                        <strong>Não publicado</strong>
+                    {% endif %}
+                </p>
+
+                {% if tutorial.video_url %}
+                    <p>
+                        <a href="{{ tutorial.video_url }}"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            Abrir vídeo
+                        </a>
+                    </p>
+                {% endif %}
+
+                <p style="margin-top: 12px;">
+                    <a href="{% url 'editar_tutorial' tutorial.pk %}">
+                        Editar
+                    </a>
+                    |
+                    <a href="{% url 'excluir_tutorial' tutorial.pk %}">
+                        Excluir
+                    </a>
+                </p>
+            </article>
+        {% empty %}
+            <p>Nenhum tutorial cadastrado ainda.</p>
+        {% endfor %}
+
+        <p style="margin-top: 25px;">
+            <a href="{% url 'inicio' %}">Voltar ao início</a>
+        </p>
+    </main>
+</body>
+</html>

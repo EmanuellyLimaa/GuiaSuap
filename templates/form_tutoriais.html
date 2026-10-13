@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ titulo_pagina }} - GuiaSuap</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body class="paginas-cadastro">
+    <main class="cadastro-container">
+        <div class="logo">
+            <h1>Guia<span>Suap</span></h1>
+            <p> Painel administrativo </p>
+        </div>
+
+        <h2>{{ titulo_pagina }}</h2>
+
+        <form method="post">
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="erros">{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            {% for field in form %}
+                <div class="campo">
+                    <label for="{{ field.id_for_label }}">
+                        {{ field.label }}
+                    </label>
+                    {{ field }}
+                    {{ field.errors }}
+
+                    {% if field.help_text %}
+                        <small>{{ field.help_text }}</small>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <button type="submit">Salvar tutorial</button>
+        </form>
+
+        <p class="login-link">
+            <a href="{% url 'gerenciar_tutoriais' %}">
+                Voltar aos tutoriais
+            </a>
+        </p>
+    </main>
+</body>
+</html>

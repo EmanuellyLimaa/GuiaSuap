@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login as auth_login, logout, get_user_model
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import CadastroForm
+from .forms import CadastroForm, TutorialForm
+from .models import Tutorial
 
 Usuario = get_user_model()
 

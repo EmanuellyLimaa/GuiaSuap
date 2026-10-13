@@ -1,38 +1,93 @@
+
+/* =========================================
+   GUIASUAP — ESTILOS GERAIS
+========================================= */
+
+:root {
+    --verde: #078c38;
+    --verde-escuro: #056d2b;
+    --verde-claro: #edf7f0;
+    --fundo: #f4f7f5;
+    --texto: #171c18;
+    --texto-suave: #5f6962;
+    --borda: #dfe7e1;
+    --sombra: 0 12px 40px rgba(18, 54, 30, 0.10);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    color: #111;
+html {
+    scroll-behavior: smooth;
 }
 
-/* =========================================================
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--texto);
+    background: var(--fundo);
+    line-height: 1.5;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+.mensagens-globais {
+    width: min(100% - 32px, 900px);
+    margin: 16px auto;
+}
+
+.mensagem {
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: white;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+}
+
+.mensagem.success {
+    color: #17663a;
+    background: #effaf2;
+}
+
+.mensagem.error,
+.erros,
+.errorlist {
+    color: #b42318;
+}
+
+/* =========================================
    TELA INICIAL
-========================================================= */
+========================================= */
 
 .inicio-page {
     min-height: 100vh;
-    background: #eef7f0;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 40px;
+    background: #eef7f0;
 }
-
-/* CARTÃO */
 
 .inicio-card {
     width: 100%;
-    max-width: 900px;
-    min-height: 700px;
-    background: #ffffff;
+    max-width: 1000px;
+    min-height: 650px;
+    padding: 55px 65px;
+    background: white;
     border-radius: 22px;
-    padding: 55px 70px;
-    box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.10);
+    box-shadow: var(--sombra);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,86 +95,72 @@ body {
     text-align: center;
 }
 
-/* LOGO */
-
 .inicio-brand img {
     width: 250px;
-    height: auto;
-    margin-bottom: 30px;
+    margin: 0 auto 28px;
+    object-fit: contain;
 }
-
-/* CONTEÚDO */
 
 .inicio-content {
     width: 100%;
-    max-width: 650px;
+    max-width: 700px;
 }
-
-/* TÍTULO */
 
 .inicio-content h1 {
     font-size: 44px;
     line-height: 1.15;
-    color: #111111;
     margin-bottom: 20px;
+    color: #111;
 }
 
 .inicio-content h1 span {
-    color: #078c38;
+    color: var(--verde);
 }
-
-/* DESCRIÇÃO */
 
 .inicio-description {
-    max-width: 600px;
+    max-width: 620px;
     margin: 0 auto 30px;
     font-size: 17px;
-    line-height: 1.6;
-    color: #555555;
+    line-height: 1.7;
+    color: var(--texto-suave);
 }
-
-/* BOTÃO */
 
 .inicio-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-width: 230px;
-    height: 60px;
-    padding: 0 30px;
-    background: #078c38;
+    min-height: 58px;
+    padding: 14px 30px;
+    background: var(--verde);
     color: white;
     border-radius: 12px;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: bold;
     transition: 0.3s;
 }
 
 .inicio-button:hover {
-    background: #056d2b;
+    background: var(--verde-escuro);
     transform: translateY(-2px);
 }
 
-/* =========================================================
-   BENEFÍCIOS DO INÍCIO
-========================================================= */
-
 .inicio-benefits {
     width: 100%;
-    margin-top: 45px;
-    padding-top: 30px;
-    border-top: 1px solid #eeeeee;
+    margin-top: 44px;
+    padding-top: 28px;
+    border-top: 1px solid #e9eeea;
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 24px;
 }
 
 .inicio-benefit {
     flex: 1;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     text-align: left;
 }
 
@@ -128,8 +169,8 @@ body {
     height: 45px;
     flex-shrink: 0;
     border-radius: 12px;
-    background: #edf7f0;
-    color: #078c38;
+    background: var(--verde-claro);
+    color: var(--verde);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -139,1121 +180,27 @@ body {
 
 .inicio-benefit strong {
     display: block;
-    color: #111111;
     font-size: 14px;
     margin-bottom: 4px;
 }
 
 .inicio-benefit p {
-    color: #666666;
+    color: #666;
     font-size: 12px;
-    line-height: 1.4;
 }
 
-/* =========================================================
-   LINK PARA LOGIN
-========================================================= */
-
 .inicio-login {
-    margin-top: 35px;
+    margin-top: 32px;
     font-size: 14px;
-    color: #444444;
+    color: #444;
 }
 
 .inicio-login a {
-    color: #078c38;
+    color: var(--verde);
     font-weight: bold;
     text-decoration: none;
-    margin-left: 5px;
 }
 
 .inicio-login a:hover {
     text-decoration: underline;
-}
-
-
-/* =========================================================
-   RESPONSIVO
-========================================================= */
-
-@media (max-width: 750px) {
-
-    .inicio-page {
-        padding: 20px;
-    }
-
-    .inicio-card {
-        padding: 45px 30px;
-    }
-
-    .inicio-content h1 {
-        font-size: 36px;
-    }
-
-    .inicio-benefits {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 18px;
-    }
-
-    .inicio-benefit {
-        justify-content: flex-start;
-    }
-}
-
-
-@media (max-width: 500px) {
-
-    .inicio-card {
-        min-height: auto;
-
-        padding: 35px 20px;
-    }
-
-    .inicio-brand img {
-        width: 200px;
-    }
-
-    .inicio-content h1 {
-        font-size: 30px;
-    }
-
-    .inicio-description {
-        font-size: 15px;
-    }
-}
-
-/* =========================================================
-   TELA DE LOGIN
-========================================================= */
-
-body.login-page {
-    min-height: 100vh;
-    background:
-        linear-gradient(
-            135deg,
-            #087b2c 0%,
-            #087b2c 25%,
-            #ffffff 25%,
-            #ffffff 75%,
-            #087b2c 75%,
-            #087b2c 100%
-        );
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 40px;
-}
-
-/* CARTÃO PRINCIPAL */
-
-.login-card {
-    width: 100%;
-    max-width: 1200px;
-    min-height: 700px;
-    background-color: white;
-    border-radius: 22px;
-    display: flex;
-    overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-}
-
-/* =========================================================
-   LADO ESQUERDO
-========================================================= */
-
-.login-left {
-    width: 42%;
-    padding: 45px 55px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border-right: 1px solid #eeeeee;
-}
-
-/* LOGO */
-
-.brand img {
-    width: 260px;
-    max-width: 100%;
-    margin-bottom: 15px;
-}
-
-/* TEXTO ABAIXO DA LOGO */
-
-.brand-description {
-    max-width: 330px;
-    font-size: 17px;
-    line-height: 1.5;
-    color: #333;
-    margin-bottom: 25px;
-}
-
-/* ILUSTRAÇÃO */
-
-.login-illustration {
-    width: 280px;
-    height: 180px;
-    margin: 10px 0 25px;
-    border-radius: 20px;
-    background: linear-gradient(
-        135deg,
-        #f4faf5,
-        #e7f5e9
-    );
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-/* COMPUTADOR */
-
-.computer {
-    font-size: 100px;
-}
-
-
-/* CADEADO */
-
-.lock {
-    position: absolute;
-
-    right: 25px;
-    bottom: 15px;
-
-    font-size: 50px;
-}
-
-
-/* =========================================================
-   BENEFÍCIOS
-========================================================= */
-
-.benefits {
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 18px;
-
-    margin-top: 10px;
-}
-
-.benefit {
-    width: 100%;
-
-    display: flex;
-    align-items: center;
-
-    gap: 15px;
-
-    text-align: left;
-}
-
-.benefit-icon {
-    width: 50px;
-    height: 50px;
-    flex-shrink: 0;
-    border-radius: 15px;
-    background-color: #eef8f0;
-    color: #079333;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.benefit strong {
-    font-size: 16px;
-    color: #111;
-}
-
-.benefit p {
-    margin-top: 4px;
-    font-size: 14px;
-    color: #555;
-}
-
-/* CADASTRO */
-
-.register-text {
-    margin-top: auto;
-    padding-top: 25px;
-    font-size: 15px;
-    color: #333;
-}
-
-.register-text a {
-    color: #078c31;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.register-text a:hover {
-    text-decoration: underline;
-}
-
-
-/* =========================================================
-   LADO DIREITO
-========================================================= */
-
-.login-right {
-    width: 58%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 50px;
-}
-
-.login-content {
-    width: 100%;
-    max-width: 500px;
-}
-
-
-/* TÍTULO */
-
-.login-content h1 {
-    text-align: center;
-    font-size: 45px;
-    margin-bottom: 15px;
-    color: #111;
-}
-
-/* SUBTÍTULO */
-
-.login-subtitle {
-    text-align: center;
-    font-size: 18px;
-    line-height: 1.6;
-    color: #333;
-    margin-bottom: 45px;
-}
-
-.login-subtitle strong {
-    color: #078c31;
-}
-
-
-/* =========================================================
-   FORMULÁRIO
-========================================================= */
-
-.form-group {
-    margin-bottom: 25px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #222;
-}
-
-/* CAIXA DO INPUT */
-
-.input-container {
-    width: 100%;
-    height: 65px;
-    border: 1px solid #d5d5d5;
-    border-radius: 13px;
-    display: flex;
-    align-items: center;
-    padding: 0 18px;
-    transition: 0.3s;
-    background-color: white;
-}
-
-.input-container:focus-within {
-    border-color: #079333;
-    box-shadow: 0 0 0 3px rgba(7, 147, 51, 0.10);
-}
-
-/* ÍCONE */
-
-.input-icon {
-    font-size: 23px;
-    margin-right: 15px;
-}
-
-/* INPUT */
-
-.input-container input {
-    width: 100%;
-    height: 100%;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    color: #222;
-}
-
-.input-container input::placeholder {
-    color: #777;
-}
-
-/* BOTÃO MOSTRAR SENHA */
-
-.show-password {
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: 20px;
-}
-/* =========================================================
-   OPÇÕES DO LOGIN
-========================================================= */
-.login-options {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 5px 0 30px;
-}
-
-.remember {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 15px;
-    cursor: pointer;
-}
-
-.remember input {
-    width: 20px;
-    height: 20px;
-}
-
-.forgot-password {
-    color: #078c31;
-    text-decoration: none;
-    font-size: 15px;
-}
-
-.forgot-password:hover {
-    text-decoration: underline;
-}
-/* =========================================================
-   BOTÃO ENTRAR
-========================================================= */
-.login-button {
-    width: 100%;
-    height: 62px;
-    border: none;
-    border-radius: 12px;
-    background-color: #079333;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.login-button:hover {
-    background-color: #056d26;
-    transform: translateY(-1px);
-}
-/* =========================================================
-   DIVISOR "OU"
-========================================================= */
-
-.divider {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin: 30px 0;
-}
-
-.divider span {
-    flex: 1;
-    height: 1px;
-    background-color: #ddd;
-}
-
-.divider p {
-    color: #333;
-    font-size: 15px;
-}
-
-/* =========================================================
-   BOTÃO GOOGLE
-========================================================= */
-.google-button {
-    width: 100%;
-    height: 60px;
-    background-color: white;
-    border: 1px solid #d5d5d5;
-    border-radius: 12px;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    transition: 0.3s;
-}
-
-.google-button:hover {
-    background-color: #f7f7f7;
-}
-
-.google-icon {
-    font-size: 22px;
-    font-weight: bold;
-}
-/* =========================================================
-   MENSAGEM DE SEGURANÇA
-========================================================= */
-
-.security-message {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 35px;
-    color: #444;
-    font-size: 14px;
-    text-align: left;
-}
-
-.security-icon {
-    font-size: 35px;
-    color: #079333;
-}
-/* =========================================================
-   RESPONSIVIDADE
-========================================================= */
-
-@media (max-width: 900px) {
-
-    body.login-page {
-        padding: 20px;
-    }
-
-    .login-card {
-        flex-direction: column;
-    }
-
-    .login-left,
-    .login-right {
-        width: 100%;
-    }
-
-    .login-left {
-        border-right: none;
-        border-bottom: 1px solid #eeeeee;
-    }
-
-    .login-right {
-        padding: 40px 30px;
-    }
-}
-
-@media (max-width: 600px) {
-
-    body.login-page {
-        padding: 10px;
-    }
-
-    .login-left {
-        padding: 30px 25px;
-    }
-
-    .login-right {
-        padding: 35px 20px;
-    }
-
-    .login-content h1 {
-        font-size: 36px;
-    }
-
-    .login-subtitle {
-        font-size: 16px;
-    }
-
-    .login-options {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-    }
-
-    .home-container {
-        padding: 35px 20px;
-    }
-
-    .home-content h1 {
-        font-size: 32px;
-    }
-}
-
-
-/* =========================================================
-   LOGIN DO ADMINISTRADOR
-========================================================= */
-
-.admin-login-page {
-
-    min-height: 100vh;
-
-    margin: 0;
-
-    background: #eef7f0;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 40px;
-
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-
-/* CARTÃO */
-
-.admin-login-card {
-
-    width: 100%;
-
-    max-width: 1050px;
-
-    min-height: 650px;
-
-    background: #ffffff;
-
-    border-radius: 22px;
-
-    overflow: hidden;
-
-    display: grid;
-
-    grid-template-columns: 42% 58%;
-
-    box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.12);
-}
-
-
-/* =========================================================
-   LADO ESQUERDO
-========================================================= */
-
-.admin-login-left {
-
-    background: #f8fbf9;
-
-    padding: 55px 45px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    text-align: center;
-}
-
-
-.admin-brand img {
-
-    width: 230px;
-
-    max-width: 100%;
-
-    height: auto;
-
-    margin-bottom: 30px;
-}
-
-
-.admin-login-left h2 {
-
-    font-size: 27px;
-
-    color: #111111;
-
-    margin: 0 0 12px;
-}
-
-
-.admin-login-left h2::after {
-
-    content: "";
-
-    display: block;
-
-    width: 65px;
-
-    height: 3px;
-
-    background: #078c38;
-
-    margin: 15px auto 0;
-
-    border-radius: 10px;
-}
-
-
-.admin-login-left > p {
-
-    max-width: 330px;
-
-    color: #555555;
-
-    font-size: 15px;
-
-    line-height: 1.6;
-
-    margin-bottom: 35px;
-}
-
-
-/* =========================================================
-   BENEFÍCIOS
-========================================================= */
-
-.admin-features {
-
-    width: 100%;
-
-    max-width: 350px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 20px;
-}
-
-
-.admin-feature {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 14px;
-
-    text-align: left;
-}
-
-
-.admin-feature-icon {
-
-    width: 42px;
-
-    height: 42px;
-
-    flex-shrink: 0;
-
-    border-radius: 12px;
-
-    background: #edf7f0;
-
-    color: #078c38;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-weight: bold;
-}
-
-
-.admin-feature strong {
-
-    display: block;
-
-    color: #111111;
-
-    font-size: 14px;
-
-    margin-bottom: 4px;
-}
-
-
-.admin-feature p {
-
-    margin: 0;
-
-    color: #666666;
-
-    font-size: 12px;
-
-    line-height: 1.4;
-}
-
-
-/* =========================================================
-   LADO DIREITO
-========================================================= */
-
-.admin-login-right {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 55px;
-}
-
-
-.admin-login-content {
-
-    width: 100%;
-
-    max-width: 470px;
-}
-
-
-.admin-icon {
-
-    width: 55px;
-
-    height: 55px;
-
-    background: #edf7f0;
-
-    border-radius: 15px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-size: 25px;
-
-    margin-bottom: 20px;
-}
-
-
-.admin-login-content h1 {
-
-    font-size: 34px;
-
-    color: #111111;
-
-    margin: 0 0 12px;
-}
-
-
-.admin-subtitle {
-
-    color: #666666;
-
-    font-size: 16px;
-
-    line-height: 1.5;
-
-    margin-bottom: 35px;
-}
-
-
-/* =========================================================
-   FORMULÁRIO
-========================================================= */
-
-.admin-form-group {
-
-    margin-bottom: 22px;
-}
-
-
-.admin-form-group label {
-
-    display: block;
-
-    color: #222222;
-
-    font-size: 15px;
-
-    font-weight: bold;
-
-    margin-bottom: 9px;
-}
-
-
-.admin-input-container {
-
-    position: relative;
-
-    display: flex;
-
-    align-items: center;
-}
-
-
-.admin-input-icon {
-
-    position: absolute;
-
-    left: 17px;
-
-    font-size: 19px;
-
-    z-index: 1;
-}
-
-
-.admin-input-container input {
-
-    width: 100%;
-
-    height: 58px;
-
-    padding: 0 18px 0 52px;
-
-    border: 1px solid #d7d7d7;
-
-    border-radius: 11px;
-
-    font-size: 15px;
-
-    outline: none;
-
-    box-sizing: border-box;
-
-    transition: 0.2s;
-}
-
-
-.admin-input-container input:focus {
-
-    border-color: #078c38;
-
-    box-shadow:
-        0 0 0 3px rgba(7, 140, 56, 0.10);
-}
-
-
-/* =========================================================
-   OPÇÕES
-========================================================= */
-
-.admin-options {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    margin: 5px 0 25px;
-
-    font-size: 13px;
-}
-
-
-.admin-options label {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 7px;
-
-    color: #444444;
-}
-
-
-.admin-options input {
-
-    width: 17px;
-
-    height: 17px;
-}
-
-
-.admin-options a {
-
-    color: #078c38;
-
-    font-weight: bold;
-
-    text-decoration: none;
-}
-
-
-.admin-options a:hover {
-
-    text-decoration: underline;
-}
-
-
-/* =========================================================
-   BOTÃO
-========================================================= */
-
-.admin-login-button {
-
-    width: 100%;
-
-    height: 58px;
-
-    border: none;
-
-    border-radius: 11px;
-
-    background: #078c38;
-
-    color: white;
-
-    font-size: 17px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-}
-
-
-.admin-login-button:hover {
-
-    background: #056d2b;
-
-    transform: translateY(-1px);
-}
-
-
-/* =========================================================
-   SEGURANÇA
-========================================================= */
-
-.admin-security {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 10px;
-
-    margin-top: 30px;
-
-    padding-top: 25px;
-
-    border-top: 1px solid #eeeeee;
-
-    color: #555555;
-
-    text-align: center;
-}
-
-
-.admin-security span {
-
-    font-size: 25px;
-}
-
-
-.admin-security p {
-
-    margin: 0;
-
-    font-size: 12px;
-
-    line-height: 1.5;
-}
-
-
-/* =========================================================
-   VOLTAR
-========================================================= */
-
-.back-login {
-
-    text-align: center;
-
-    margin-top: 25px;
-}
-
-
-.back-login a {
-
-    color: #078c38;
-
-    text-decoration: none;
-
-    font-size: 14px;
-
-    font-weight: bold;
-}
-
-
-.back-login a:hover {
-
-    text-decoration: underline;
-}
-
-
-/* =========================================================
-   RESPONSIVO
-========================================================= */
-
-@media (max-width: 800px) {
-
-    .admin-login-card {
-
-        grid-template-columns: 1fr;
-    }
-
-    .admin-login-left {
-
-        padding: 40px 30px;
-    }
-
-    .admin-login-right {
-
-        padding: 40px 30px;
-    }
-
-}
-
-
-@media (max-width: 500px) {
-
-    .admin-login-page {
-
-        padding: 15px;
-    }
-
-    .admin-login-left,
-    .admin-login-right {
-
-        padding: 30px 20px;
-    }
-
-    .admin-login-content h1 {
-
-        font-size: 28px;
-    }
-
-    .admin-options {
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 12px;
-    }
-
 }

@@ -1,3 +1,4 @@
+```html
 {% load static %}
 
 <!DOCTYPE html>
@@ -5,88 +6,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Início - GuiaSuap</title>
+
+    <title> GuiaSuap | Início </title>
+
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body class="inicio-page">
 
-    <main class="inicio-card">
-        <div class="inicio-brand">
-            <img
-                src="{% static 'img/logomarca.png' %}"
-                alt="Logo GuiaSuap">
-        </div>
+    <header class="inicio-header">
+        <div class="inicio-container">
 
-        <div class="inicio-content">
-            <h1>
-                Desbravando o
-                <span>SUAP</span>
-                sem mistérios
-            </h1>
-
-            <p class="inicio-description">
-                Aprenda a utilizar o SUAP de forma fácil,
-                rápida e prática através de tutoriais,
-                dicas e conteúdos preparados para você.
-            </p>
-
-            <a
-                href="{% url 'login' %}"
-                class="inicio-button">
-                Começar agora
+            <a href="{% url 'inicio' %}" class="inicio-logo">
+                <img src="{% static 'img/logomarca.png' %}"
+                     alt="Logo do GuiaSuap">
+                <h1>Guia<span>Suap</span></h1>
             </a>
 
-            <div class="inicio-benefits">
-                <div class="inicio-benefit">
-                    <div class="inicio-benefit-icon">
-                        ▶
+            <nav class="inicio-nav">
+                <a href="{% url 'inicio' %}">Início</a>
+                <a href="#sobre">Sobre o projeto</a>
+                <a href="{% url 'login' %}">Entrar</a>
+                <a href="{% url 'cadastro' %}" class="botao-cadastro">
+                    Criar conta
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+    <main>
+
+        <section class="inicio-hero">
+            <div class="inicio-container inicio-hero-conteudo">
+
+                <div class="inicio-texto">
+
+                    <span class="etiqueta">
+                        SEU GUIA PARA O SUAP
+                    </span>
+
+                    <h2>
+                        Desbravando o SUAP
+                        <span>sem mistérios!</span>
+                    </h2>
+
+                    <p>
+                        Está chegando ao IFRN e ainda não sabe como
+                        utilizar o SUAP? O GuiaSuap foi desenvolvido
+                        para ajudar você a conhecer a plataforma,
+                        esclarecer dúvidas e acompanhar sua rotina
+                        acadêmica com mais autonomia.
+                    </p>
+
+                    <div class="inicio-botoes">
+                        <a href="{% url 'cadastro' %}"
+                           class="botao-cadastro">
+                            Criar minha conta
+                        </a>
+
+                        <a href="{% url 'login' %}"
+                           class="botao-secundario">
+                            Já tenho cadastro
+                        </a>
                     </div>
 
-                    <div>
-                        <strong>Tutoriais em vídeos</strong>
-
-                        <p>
-                            Aprenda de forma fácil e prática.
-                        </p>
-                    </div>
                 </div>
 
-                <div class="inicio-benefit">
-                    <div class="inicio-benefit-icon">
-                        ?
-                    </div>
-
-                    <div>
-                        <strong>Tire suas dúvidas</strong>
-
-                        <p>
-                            Encontre respostas para suas dúvidas.
-                        </p>
-                    </div>
+                <div class="inicio-imagem">
+                    <img src="{% static 'img/logomarca.png' %}"
+                         alt="Identidade visual do GuiaSuap">
                 </div>
 
-                <div class="inicio-benefit">
-                    <div class="inicio-benefit-icon">
-                        ✓
-                    </div>
+            </div>
+        </section>
 
-                    <div>
-                        <strong>Dicas e sugestões</strong>
+        <section class="inicio-beneficios" id="sobre">
+            <div class="inicio-container">
+
+                <h2 class="secao-titulo">
+                    Como o GuiaSuap pode ajudar você?
+                </h2>
+
+                <p class="secao-descricao">
+                    Tudo o que você precisa para começar a utilizar
+                    o SUAP com mais autonomia.
+                </p>
+
+                <div class="beneficios-grid">
+
+                    <article class="beneficio-card">
+                        <div class="beneficio-icone">▶</div>
+                        <h3>Tutoriais em vídeo</h3>
                         <p>
-                            Aproveite dicas para usar o SUAP.
+                            Aprenda a utilizar as principais
+                            funcionalidades do SUAP passo a passo.
                         </p>
-                    </div>
+                    </article>
+
+                    <article class="beneficio-card">
+                        <div class="beneficio-icone">?</div>
+                        <h3>Orientações simples</h3>
+                        <p>
+                            Encontre informações que facilitam sua
+                            adaptação à rotina acadêmica do IFRN.
+                        </p>
+                    </article>
+
+                    <article class="beneficio-card">
+                        <div class="beneficio-icone">✓</div>
+                        <h3>Mais autonomia</h3>
+                        <p>
+                            Consulte os conteúdos e esclareça suas
+                            dúvidas para utilizar o sistema com
+                            mais segurança.
+                        </p>
+                    </article>
+
                 </div>
             </div>
+        </section>
 
-            <p class="inicio-login">
-                Já possui uma conta?
+        <section class="inicio-chamada">
+            <div class="inicio-container">
+                <h2>Pronto para começar?</h2>
 
-                <a href="{% url 'login' %}">
-                    Entrar
+                <p>
+                    Crie sua conta e explore os recursos do GuiaSuap.
+                </p>
+
+                <a href="{% url 'cadastro' %}"
+                   class="botao-cadastro">
+                    Começar agora
                 </a>
-            </p>
-        </div>
+            </div>
+        </section>
+
     </main>
+
+    <footer class="inicio-footer">
+        <div class="inicio-container">
+            <p>© 2026 GuiaSuap</p>
+        </div>
+    </footer>
+
 </body>
 </html>

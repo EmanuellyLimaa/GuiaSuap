@@ -1,4 +1,3 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -25,11 +24,13 @@
 
             {% if messages %}
                 {% for message in messages %}
-                    <p>{{ message }}</p>
+                    <p class="mensagem {{ message.tags }}">
+                        {{ message }}
+                    </p>
                 {% endfor %}
             {% endif %}
 
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
 
                 {% if form.non_field_errors %}
@@ -54,6 +55,19 @@
                     {{ form.email.errors }}
                 </div>
 
+                <div class="campo campo-foto-perfil">
+                    <label for="{{ form.foto_perfil.id_for_label }}">
+                        Foto de perfil (opcional)
+                    </label>
+
+                    <p class="ajuda-foto">
+                        Escolha uma foto para personalizar sua conta.
+                    </p>
+
+                    {{ form.foto_perfil }}
+                    {{ form.foto_perfil.errors }}
+                </div>
+
                 <div class="campo">
                     <label for="{{ form.password1.id_for_label }}">
                         Senha
@@ -70,7 +84,7 @@
                     {{ form.password2.errors }}
                 </div>
 
-                <button type="submit">Cadastrar</button>
+                <button type="submit">Criar minha conta</button>
             </form>
 
             <p class="login-link">

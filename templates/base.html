@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block titulo %}GuiaSuap{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block estilos %}{% endblock %}
+</head>
+
+<body class="{% block classe_body %}{% endblock %}">
+
+    {% if user.is_authenticated %}
+        <aside class="menu-lateral">
+            <a href="{% url 'inicio' %}" class="marca">
+                <img src="{% static 'img/logomarca.png' %}" alt="Logo GuiaSuap">
+                <span>Guia<span class="marca-suap">Suap</span></span>
+            </a>
+
+            <nav class="menu-links">
+                <a href="{% url 'inicio' %}" class="menu-item">Início</a>
+                <a href="{% url 'tutoriais' %}" class="menu-item">Tutoriais</a>
+                <a href="#" class="menu-item">Comunidade</a>
+                <a href="#" class="menu-item">Dúvidas</a>
+                <a href="#" class="menu-item">Termômetro</a>
+                <a href="#" class="menu-item">Meu perfil</a>
+                <a href="#" class="menu-item">Configurações</a>
+            </nav>
+
+            <form action="{% url 'logout' %}" method="post" class="menu-sair">
+                {% csrf_token %}
+                <button type="submit" class="menu-item botao-sair">
+                    Sair
+                </button>
+            </form>
+        </aside>
+    {% endif %}
+
+    <div class="{% if user.is_authenticated %}painel-principal{% endif %}">
+
+        {% if user.is_authenticated %}
+            <header class="painel-topo">
+                <h1>{% block titulo_pagina %}GuiaSuap{% endblock %}</h1>
+
+                <div class="usuario-topo">
+                    {% if user.foto_perfil %}
+                        <img
+                            src="{{ user.foto_perfil.url }}"
+                            alt="Foto de perfil"
+                            class="usuario-foto"
+                        >
+                    {% else %}
+                        <span class="usuario-avatar">
+                            {{ user.nome_completo|default:user.username|first|upper }}
+                        </span>
+                    {% endif %}
+
+                    <div>
+                        <strong>
+                            {{ user.nome_completo|default:user.username }}
+                        </strong>
+                        <small>Estudante</small>
+                    </div>
+                </div>
+            </header>
+        {% endif %}
+
+        {% if messages %}
+            <div class="mensagens-globais">
+                {% for message in messages %}
+                    <div class="mensagem {{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <main>
+            {% block conteudo %}
+            {% endblock %}
+        </main>
+
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>

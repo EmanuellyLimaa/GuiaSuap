@@ -1,0 +1,249 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GuiaSuap | Tutoriais</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body class="tutoriais-page">
+
+    <!-- CABEÇALHO -->
+    <header class="tutoriais-header">
+        <div class="tutoriais-container">
+
+            <a href="{% url 'inicio' %}" class="inicio-logo">
+                <img src="{% static 'img/logomarca.png' %}"
+                     alt="Logo do GuiaSuap">
+
+                <h1>Guia<span>Suap</span></h1>
+            </a>
+
+            <nav class="inicio-nav">
+                <a href="{% url 'inicio' %}">Início</a>
+                <a href="{% url 'tutoriais' %}">Tutoriais</a>
+                <a href="{% url 'logout' %}"
+                   onclick="event.preventDefault(); document.getElementById('form-logout').submit();">
+                    Sair
+                </a>
+            </nav>
+
+            <form id="form-logout"
+                  action="{% url 'logout' %}"
+                  method="post"
+                  style="display: none;">
+                {% csrf_token %}
+            </form>
+
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="tutoriais-container tutoriais-conteudo">
+
+        <section class="tutoriais-apresentacao">
+            <span class="etiqueta">APRENDA COM O GUIASUAP</span>
+
+            <h2>Tutoriais do SUAP</h2>
+
+            <p>
+                Aprenda a utilizar as principais funcionalidades do SUAP
+                por meio de tutoriais simples e objetivos. Explore os
+                conteúdos e tenha mais autonomia na sua rotina acadêmica.
+            </p>
+        </section>
+
+        <!-- BUSCA DE TUTORIAIS -->
+        <section class="tutoriais-busca">
+            <label for="buscar-tutorial">O que você deseja aprender?</label>
+
+            <input
+                type="search"
+                id="buscar-tutorial"
+                placeholder="Buscar tutorial..."
+                autocomplete="off"
+            >
+        </section>
+
+        <!-- LISTA DE TUTORIAIS -->
+        <section class="tutoriais-lista">
+
+            <h2>Explore os tutoriais</h2>
+
+            <div class="tutoriais-grid">
+
+                <!-- TUTORIAL 1 -->
+                <article class="tutorial-card">
+                    <div class="tutorial-video tutorial-capa">
+                        <span aria-hidden="true">▶</span>
+                    </div>
+
+                    <div class="tutorial-card-conteudo">
+                        <span class="tutorial-categoria">Primeiros passos</span>
+
+                        <h3>Conhecendo o SUAP</h3>
+
+                        <p>
+                            Entenda o que é o SUAP, conheça sua interface
+                            e descubra as principais funcionalidades
+                            disponíveis para os estudantes.
+                        </p>
+
+                        <a href="#" class="tutorial-link">
+                            Assistir tutorial →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- TUTORIAL 2 -->
+                <article class="tutorial-card">
+                    <div class="tutorial-video tutorial-capa">
+                        <span aria-hidden="true">▶</span>
+                    </div>
+
+                    <div class="tutorial-card-conteudo">
+                        <span class="tutorial-categoria">Acesso</span>
+
+                        <h3>Como entrar no SUAP</h3>
+
+                        <p>
+                            Aprenda como acessar sua conta e conheça
+                            os passos básicos para começar a utilizar
+                            o sistema acadêmico.
+                        </p>
+
+                        <a href="#" class="tutorial-link">
+                            Assistir tutorial →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- TUTORIAL 3 -->
+                <article class="tutorial-card">
+                    <div class="tutorial-video tutorial-capa">
+                        <span aria-hidden="true">▶</span>
+                    </div>
+
+                    <div class="tutorial-card-conteudo">
+                        <span class="tutorial-categoria">Vida acadêmica</span>
+
+                        <h3>Consultando as notas</h3>
+
+                        <p>
+                            Veja como localizar suas notas e acompanhar
+                            seu desempenho nas disciplinas pelo sistema.
+                        </p>
+
+                        <a href="#" class="tutorial-link">
+                            Assistir tutorial →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- TUTORIAL 4 -->
+                <article class="tutorial-card">
+                    <div class="tutorial-video tutorial-capa">
+                        <span aria-hidden="true">▶</span>
+                    </div>
+
+                    <div class="tutorial-card-conteudo">
+                        <span class="tutorial-categoria">Frequência</span>
+
+                        <h3>Consultando as faltas</h3>
+
+                        <p>
+                            Aprenda a verificar sua frequência e
+                            acompanhar as faltas registradas nas
+                            disciplinas.
+                        </p>
+
+                        <a href="#" class="tutorial-link">
+                            Assistir tutorial →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- TUTORIAL 5 -->
+                <article class="tutorial-card">
+                    <div class="tutorial-video tutorial-capa">
+                        <span aria-hidden="true">▶</span>
+                    </div>
+
+                    <div class="tutorial-card-conteudo">
+                        <span class="tutorial-categoria">Horários</span>
+
+                        <h3>Visualizando o horário de aulas</h3>
+
+                        <p>
+                            Descubra onde consultar os horários das aulas
+                            e organize melhor sua rotina no campus.
+                        </p>
+
+                        <a href="#" class="tutorial-link">
+                            Assistir tutorial →
+                        </a>
+                    </div>
+                </article>
+
+                <!-- TUTORIAL 6 -->
+                <article class="tutorial-card">
+                    <div class="tutorial-video tutorial-capa">
+                        <span aria-hidden="true">▶</span>
+                    </div>
+
+                    <div class="tutorial-card-conteudo">
+                        <span class="tutorial-categoria">Documentos</span>
+
+                        <h3>Declarações e documentos</h3>
+
+                        <p>
+                            Conheça os caminhos para localizar
+                            documentos e declarações acadêmicas
+                            disponibilizados pelo sistema.
+                        </p>
+
+                        <a href="#" class="tutorial-link">
+                            Assistir tutorial →
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+
+            <p id="nenhum-tutorial" hidden>
+                Nenhum tutorial encontrado. Tente outra palavra.
+            </p>
+
+        </section>
+
+        <!-- AJUDA -->
+        <section class="tutoriais-ajuda">
+            <h2>Precisa de mais ajuda?</h2>
+
+            <p>
+                Continue explorando os conteúdos do GuiaSuap para
+                conhecer melhor o sistema e esclarecer suas dúvidas.
+            </p>
+
+            <a href="{% url 'inicio' %}" class="botao-cadastro">
+                Voltar ao início
+            </a>
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="inicio-footer">
+        <div class="tutoriais-container">
+            <p>© 2026 GuiaSuap — Desbravando o SUAP sem mistérios!</p>
+        </div>
+    </footer>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

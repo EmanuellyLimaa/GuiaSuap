@@ -1,5 +1,5 @@
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login, logout, get_user_model
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -98,6 +98,33 @@ def logout_usuarios(request):
         return redirect('login')
 
     return redirect('tutoriais')
+
+def administrador_ativo(user):
+    return user.is_authenticated and user.is_staff 
+
+somente_administrador = user_passes_test(
+    administrador_ativo,
+    login_url ='login_administrador'
+)
+
+# read: vai listar todos os tutoriais disponivel
+@somente_administrador
+def gerenciar_tutoriais(request):
+    tutoriais = Tutorial.objetcs.all()
+
+    return render(request, 'Suap/gerenciar_tutoriais.html',{
+        'tutoriais': tutoriais
+    })
+
+# create: cadastro de tutorial 
+@somente_administrador
+def criar_tutoriais(request):
+    if request.method == 'POST':
+        form = TutorialForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Tutorial cadastrado com sucesso.')
 
 
 def base(request):

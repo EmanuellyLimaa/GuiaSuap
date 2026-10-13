@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Usuario
+from .models import Usuario, Tutorial 
 
 class CadastroForm(UserCreationForm):
     nome_completo = forms.CharField(
@@ -49,3 +49,25 @@ def save(self, commit=True):
         usuario.save()
 
     return usuario
+
+class TutorialForm(forms. ModelsForm):
+     class meta:
+          fields = ['titulo', 'descricao', 'video_urls', 'publicado']
+          labels = {
+               'titulo': 'Título do tutorial',
+               'descricao': 'Descrição do tutorial',
+               'video_url': 'Link do vídeo',
+               'publicado': 'Disponibilidade para os alunos',
+            }
+          widgets = {
+               'titulo': forms.TextInput(attrs={
+                    'placeholder': 'exe.: Como acessar o boletim'
+               }),
+               'descricao': forms.Textarea(attrs={
+                    'rows': 4, 
+                    'placeholder': 'Explicar o que o aluno vai aprender com o tutorial'
+               }),
+               'video_url': forms. URLInput(attrs={
+                    'placeholder': 'https://...'
+               })
+            } 

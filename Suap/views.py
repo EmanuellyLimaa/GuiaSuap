@@ -2,17 +2,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login, logout, get_user_model
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from .forms import CadastroForm, TutorialForm
 from .models import Tutorial
 
 Usuario = get_user_model()
 
-
+# pagina inicial
 def inicio(request):
     return render(request, 'inicio.html')
 
-
+# cadastro dos alunos
 def cadastro(request):
     if request.method == 'POST':
         form = CadastroForm(request.POST, request.FILES)
@@ -29,7 +29,7 @@ def cadastro(request):
 
     return render(request, 'cadastro.html', {'form': form})
 
-
+# login dos alunos
 def login(request):
     if request.method == 'POST':
         email = request.POST.get('email', '').strip().lower()
@@ -57,6 +57,7 @@ def login(request):
     return render(request, 'login.html')
 
 
+#login adiministrativo
 def login_administrador(request):
     if request.method == 'POST':
         email = request.POST.get('email', '').strip().lower()
@@ -83,7 +84,7 @@ def login_administrador(request):
 
     return render(request, 'login_administrador.html')
 
-
+#read: pagina de tutorias p/ os alunos
 @login_required
 def tutoriais(request):
     if request.user.is_staff:
@@ -99,6 +100,7 @@ def logout_usuarios(request):
 
     return redirect('tutoriais')
 
+#verificar se o usuario é administrador
 def administrador_ativo(user):
     return user.is_authenticated and user.is_staff 
 

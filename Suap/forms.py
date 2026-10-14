@@ -50,9 +50,16 @@ def save(self, commit=True):
 
     return usuario
 
-class TutorialForm(forms. ModelsForm):
+class TutorialForm(forms.ModelForm):
      class meta:
-          fields = ['titulo', 'descricao', 'video_urls', 'publicado']
+          model = Tutorial
+          fields = [
+               'titulo', 
+                'descricao', 
+                'video_urls', 
+                'publicado'
+            ]
+          
           labels = {
                'titulo': 'Título do tutorial',
                'descricao': 'Descrição do tutorial',

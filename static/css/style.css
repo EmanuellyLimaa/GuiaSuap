@@ -1,6 +1,6 @@
 
 /* =========================================
-   GUIASUAP — ESTILOS GERAIS
+              GUIASUAP 
 ========================================= */
 
 :root {
@@ -204,3 +204,5 @@ textarea {
 .inicio-login a:hover {
     text-decoration: underline;
 }
+
+

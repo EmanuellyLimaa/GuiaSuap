@@ -1290,3 +1290,614 @@ tbody tr:hover {
         animation-iteration-count: 1 !important;
     }
 }
+
+/* =====================================================
+   GUIASUAP — PADRÃO VISUAL DO PROTÓTIPO
+   Adicione este bloco ao FINAL de static/css/style.css
+   ===================================================== */
+
+:root {
+    --verde: #087a2d;
+    --verde-escuro: #075b25;
+    --verde-claro: #eaf5ec;
+    --verde-suave: #f7faf7;
+    --branco: #ffffff;
+    --fundo: #f8f9f8;
+    --texto: #111511;
+    --texto-suave: #59635b;
+    --borda: #dfe4df;
+    --sombra: 0 18px 48px rgba(16, 44, 23, 0.13);
+}
+
+/* Fundo branco com detalhes verdes */
+body.login-page,
+body.admin-login-page,
+body.paginas-cadastro {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: clamp(18px, 4vw, 52px);
+    background:
+        radial-gradient(
+            ellipse at 0% 0%,
+            #087a2d 0%,
+            #087a2d 22%,
+            transparent 22.2%
+        ),
+        radial-gradient(
+            ellipse at 100% 100%,
+            #087a2d 0%,
+            #087a2d 20%,
+            transparent 20.2%
+        ),
+        #f8f9f8;
+}
+
+/* Pontinhos decorativos */
+body.login-page::before,
+body.admin-login-page::before,
+body.paginas-cadastro::before {
+    content: "";
+    position: fixed;
+    z-index: 0;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(
+            circle,
+            rgba(8, 122, 45, 0.17) 2.5px,
+            transparent 3px
+        ) 95% 5% / 26px 26px,
+        radial-gradient(
+            circle,
+            rgba(8, 122, 45, 0.17) 2.5px,
+            transparent 3px
+        ) 5% 95% / 26px 26px;
+}
+
+/* Cartões principais divididos em duas colunas */
+.login-card,
+.admin-login-card,
+.cadastro-layout {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(300px, 0.85fr) minmax(420px, 1.15fr);
+    width: min(100%, 1240px);
+    min-height: min(850px, calc(100vh - 64px));
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid rgba(220, 226, 220, 0.85);
+    border-radius: 24px;
+    background: #ffffff;
+    box-shadow: 0 18px 48px rgba(20, 35, 23, 0.16);
+    text-align: left;
+}
+
+/* Lado esquerdo: apresentação e logo */
+.login-left,
+.admin-login-left,
+.cadastro-lado-esquerdo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(28px, 4vw, 52px);
+    background: linear-gradient(
+        145deg,
+        #ffffff 0%,
+        #ffffff 80%,
+        #f3f8f3 100%
+    );
+}
+
+.login-left .brand,
+.admin-login-left .brand {
+    margin: 0 auto 18px;
+    text-align: center;
+}
+
+.login-left .brand img,
+.admin-login-left .brand img,
+.cadastro-lado-esquerdo .brand img {
+    display: block;
+    width: min(100%, 300px);
+    max-height: 245px;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+.brand-description,
+.cadastro-lado-esquerdo > p {
+    max-width: 390px;
+    margin: 0 auto 26px;
+    color: #222822;
+    text-align: center;
+    line-height: 1.65;
+}
+
+/* Ilustração da tela de login */
+.login-illustration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    min-height: 105px;
+    margin: 4px 0 24px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #f1f8f2, #ffffff);
+}
+
+.login-illustration .computer {
+    font-size: clamp(3rem, 6vw, 5rem);
+}
+
+.login-illustration .lock {
+    font-size: 2.2rem;
+}
+
+/* Benefícios */
+.benefits {
+    display: grid;
+    gap: 13px;
+    margin: 4px 0 26px;
+}
+
+.benefit,
+.cadastro-beneficio {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.benefit-icon {
+    display: grid;
+    flex: 0 0 46px;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border-radius: 15px;
+    color: var(--verde);
+    background: #eef6ef;
+    font-weight: 800;
+}
+
+.benefit strong {
+    color: #111111;
+}
+
+.benefit p {
+    margin: 1px 0 0;
+    color: var(--texto-suave);
+    font-size: 0.9rem;
+}
+
+.register-text {
+    margin: auto 0 0;
+    padding-top: 18px;
+    color: #202720;
+    text-align: center;
+}
+
+.register-text a,
+.login-link a,
+.back-login a {
+    color: var(--verde);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Lado direito: formulário */
+.login-right,
+.admin-login-right,
+.cadastro-lado-direito {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(28px, 4vw, 58px);
+    border-left: 1px solid #f0f2f0;
+    background: #ffffff;
+}
+
+.login-content,
+.admin-login-content {
+    width: 100%;
+    max-width: 540px;
+    margin: auto;
+}
+
+.login-content h1,
+.admin-login-content h1,
+.cadastro-lado-direito h2 {
+    margin-bottom: 12px;
+    color: #111111;
+    font-size: clamp(2rem, 3.2vw, 2.8rem);
+    letter-spacing: -0.7px;
+    text-align: center;
+}
+
+.login-subtitle,
+.admin-subtitle {
+    margin: 0 auto 35px;
+    color: #202420;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.login-subtitle strong {
+    color: var(--verde);
+}
+
+/* Espaçamento dos campos */
+.login-content form,
+.admin-login-content form,
+.cadastro-lado-direito form {
+    display: grid;
+    gap: 22px;
+}
+
+.login-content .form-group,
+.admin-login-content .admin-form-group {
+    display: grid;
+    gap: 9px;
+    margin: 0;
+}
+
+.login-content .form-group label,
+.admin-login-content .admin-form-group label,
+.cadastro-lado-direito .campo label {
+    color: #161a16;
+    font-size: 1rem;
+    font-weight: 650;
+}
+
+/* Campos com cantos arredondados */
+.input-container,
+.admin-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 58px;
+    padding: 0 14px;
+    border: 1.5px solid #d8ded9;
+    border-radius: 14px;
+    background: #ffffff;
+}
+
+.input-container:focus-within,
+.admin-input-container:focus-within {
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px rgba(8, 122, 45, 0.09);
+}
+
+.input-icon,
+.admin-input-icon {
+    flex: 0 0 30px;
+    color: #171b17;
+    font-size: 1.35rem;
+}
+
+.input-container input,
+.admin-input-container input {
+    width: 100%;
+    min-width: 0;
+    min-height: 54px;
+    padding: 10px 8px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.input-container input:focus,
+.admin-input-container input:focus {
+    box-shadow: none;
+}
+
+.show-password {
+    min-height: auto !important;
+    padding: 7px !important;
+    border: 0 !important;
+    color: #111111 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Lembrar de mim e esqueci a senha */
+.login-options,
+.admin-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0;
+}
+
+.remember,
+.admin-options label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 400;
+}
+
+.remember input,
+.admin-options input {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--verde);
+}
+
+.forgot-password,
+.admin-options a {
+    color: var(--verde);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Botões verdes */
+.login-button,
+.admin-login-button,
+.cadastro-lado-direito button[type="submit"] {
+    width: 100%;
+    min-height: 58px;
+    border-radius: 13px;
+    color: #ffffff;
+    background: var(--verde);
+    font-size: 1.05rem;
+    font-weight: 700;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.login-button:hover,
+.admin-login-button:hover,
+.cadastro-lado-direito button[type="submit"]:hover {
+    color: #ffffff;
+    background: var(--verde-escuro);
+    transform: translateY(-1px);
+}
+
+/* Separador e botão Google */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin: 25px 0;
+}
+
+.divider span {
+    flex: 1;
+    height: 1px;
+    background: #d9dfda;
+}
+
+.divider p {
+    margin: 0;
+}
+
+.google-button {
+    width: 100%;
+    min-height: 56px;
+    border: 1px solid #d8ded9 !important;
+    border-radius: 13px;
+    color: #151915 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+}
+
+.google-icon {
+    margin-right: 8px;
+    color: #4285f4;
+    font-weight: 800;
+}
+
+/* Mensagem de segurança e acesso administrativo */
+.admin-access {
+    margin-top: 20px;
+    color: var(--texto-suave);
+    text-align: center;
+}
+
+.admin-access a {
+    color: var(--verde);
+    text-decoration: underline;
+}
+
+.security-message,
+.admin-security {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    margin-top: 28px;
+    color: #303830;
+}
+
+.security-message p,
+.admin-security p {
+    margin: 0;
+    font-size: 0.92rem;
+}
+
+.security-icon {
+    color: var(--verde);
+    font-size: 2rem;
+}
+
+/* Cadastro com o mesmo padrão do login */
+.cadastro-layout {
+    grid-template-columns: minmax(300px, 0.85fr) minmax(420px, 1.15fr);
+}
+
+.cadastro-lado-esquerdo {
+    text-align: center;
+}
+
+.cadastro-lado-esquerdo h1 {
+    margin-bottom: 8px;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.cadastro-lado-esquerdo h1 span {
+    color: var(--verde);
+}
+
+.cadastro-lado-esquerdo .cadastro-tagline {
+    color: var(--verde);
+    font-weight: 600;
+}
+
+.cadastro-lado-esquerdo .cadastro-beneficios {
+    display: grid;
+    gap: 14px;
+    margin-top: 18px;
+    text-align: left;
+}
+
+.cadastro-beneficio .benefit-icon {
+    flex-shrink: 0;
+}
+
+.cadastro-lado-direito {
+    align-items: flex-start;
+}
+
+.cadastro-lado-direito > div {
+    width: 100%;
+    max-width: 540px;
+    margin: auto;
+}
+
+.cadastro-lado-direito .cadastro-form-intro {
+    margin-bottom: 22px;
+    color: var(--texto-suave);
+    text-align: center;
+}
+
+.cadastro-lado-direito form {
+    gap: 13px;
+}
+
+.cadastro-lado-direito .campo {
+    display: grid;
+    gap: 5px;
+    margin: 0;
+}
+
+.cadastro-lado-direito .campo input {
+    width: 100%;
+    min-height: 45px;
+    padding: 10px 12px;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.cadastro-lado-direito .campo input:focus {
+    border-color: var(--verde);
+    outline: 2px solid rgba(8, 122, 45, 0.12);
+}
+
+.cadastro-lado-direito .ajuda-foto {
+    margin: 0;
+    color: var(--texto-suave);
+    font-size: 0.85rem;
+}
+
+.cadastro-lado-direito .login-link {
+    margin: 20px 0 0;
+    text-align: center;
+}
+
+/* Mensagens de sucesso e erro */
+.mensagem-login,
+.mensagem,
+.erros {
+    padding: 11px 14px;
+    border-radius: 10px;
+    color: #155c2a;
+    background: #eef7ef;
+}
+
+.mensagem.error,
+.mensagem-login.error,
+.erros {
+    color: #a32222;
+    background: #fff0f0;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    body.login-page,
+    body.admin-login-page,
+    body.paginas-cadastro {
+        padding: 20px;
+    }
+
+    .login-card,
+    .admin-login-card,
+    .cadastro-layout {
+        grid-template-columns: 1fr;
+        width: min(100%, 650px);
+        min-height: auto;
+    }
+
+    .login-left,
+    .admin-login-left,
+    .cadastro-lado-esquerdo {
+        padding: 30px 24px;
+    }
+
+    .login-right,
+    .admin-login-right,
+    .cadastro-lado-direito {
+        padding: 32px 24px;
+        border-top: 1px solid #f0f2f0;
+        border-left: 0;
+    }
+
+    .login-left .brand img,
+    .admin-login-left .brand img,
+    .cadastro-lado-esquerdo .brand img {
+        max-height: 180px;
+    }
+
+    .register-text {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    body.login-page,
+    body.admin-login-page,
+    body.paginas-cadastro {
+        padding: 12px;
+    }
+
+    .login-card,
+    .admin-login-card,
+    .cadastro-layout {
+        border-radius: 18px;
+    }
+
+    .login-left,
+    .admin-login-left,
+    .cadastro-lado-esquerdo,
+    .login-right,
+    .admin-login-right,
+    .cadastro-lado-direito {
+        padding: 24px 18px;
+    }
+
+    .login-options,
+    .admin-options {
+        align-items: flex-start;
+    }
+
+    .login-content h1,
+    .admin-login-content h1,
+    .cadastro-lado-direito h2 {
+        font-size: 2rem;
+    }
+}

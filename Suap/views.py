@@ -58,40 +58,43 @@ def login(request):
 
 
 # Login administrativo
+
 def login_administrador(request):
     if request.method == 'POST':
         email = request.POST.get('email', '').strip()
         senha = request.POST.get('senha', '')
 
-        usuario_cadastrado = Usuario.objects.filter(
-            email__iexact=email
-        ).first()
+        # Busca todas as contas administrativas com esse e-mail.
+        usuarios = Usuario.objects.filter(
+            email__iexact=email,
+            is_staff=True,
+            is_active=True
+        )
 
         usuario = None
 
-        if usuario_cadastrado:
+        # Tenta autenticar cada conta administrativa encontrada.
+        for candidato in usuarios:
             usuario = authenticate(
                 request,
-                username=usuario_cadastrado.username,
+                username=candidato.username,
                 password=senha
             )
 
-        if (
-            usuario is not None
-            and usuario.is_active
-            and usuario.is_staff
-        ):
+            if usuario is not None:
+                break
+
+        if usuario is not None and usuario.is_staff:
             auth_login(request, usuario)
             return redirect('gerenciar_tutoriais')
 
         messages.error(
             request,
-            'Acesso administrativo negado. Verifique seu e-mail e senha '
-            'e confirme se sua conta tem permissão administrativa.'
+            'Acesso administrativo negado. '
+            'Verifique seu e-mail e sua senha.'
         )
 
     return render(request, 'login_administrador.html')
-
 
 #read: pagina de tutorias p/ os alunos
 @login_required

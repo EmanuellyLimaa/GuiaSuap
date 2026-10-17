@@ -7,21 +7,23 @@
     <title>{{ titulo_pagina }} - GuiaSuap</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body class="paginas-cadastro">
     <main class="cadastro-container">
         <div class="logo">
             <h1>Guia<span>Suap</span></h1>
-            <p> Painel administrativo </p>
+            <p>Painel administrativo</p>
         </div>
 
         <h2>{{ titulo_pagina }}</h2>
 
-        
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             {% if form.non_field_errors %}
-                <div class="erros">{{ form.non_field_errors }}</div>
+                <div class="erros">
+                    {{ form.non_field_errors }}
+                </div>
             {% endif %}
 
             {% for field in form %}
@@ -31,7 +33,19 @@
                     </label>
 
                     {{ field }}
-                    {{ field.errors }}
+
+                    {% if field.name == 'video_arquivo' %}
+                        <small>
+                            Selecione um vídeo do computador,
+                            preferencialmente no formato MP4.
+                        </small>
+                    {% endif %}
+
+                    {% if field.errors %}
+                        <div class="erros">
+                            {{ field.errors }}
+                        </div>
+                    {% endif %}
 
                     {% if field.help_text %}
                         <small>{{ field.help_text }}</small>

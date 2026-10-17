@@ -3,16 +3,18 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login, logout, get_user_model
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
+
 from .forms import CadastroForm, TutorialForm
 from .models import Tutorial
 
 Usuario = get_user_model()
 
-# pagina inicial
+# Página inicial
 def inicio(request):
     return render(request, 'inicio.html')
 
-# cadastro dos alunos
+
+# Cadastro dos alunos
 def cadastro(request):
     if request.method == 'POST':
         form = CadastroForm(request.POST, request.FILES)
@@ -29,12 +31,14 @@ def cadastro(request):
 
     return render(request, 'cadastro.html', {'form': form})
 
-# login dos alunos
+
+# Login dos alunos
 def login(request):
     if request.method == 'POST':
         email = request.POST.get('email', '').strip().lower()
         senha = request.POST.get('senha', '')
 
+        # O cadastro utiliza o e-mail como username.
         usuario = authenticate(
             request,
             username=email,
@@ -58,13 +62,12 @@ def login(request):
 
 
 # Login administrativo
-
 def login_administrador(request):
     if request.method == 'POST':
         email = request.POST.get('email', '').strip()
         senha = request.POST.get('senha', '')
 
-        # Busca todas as contas administrativas com esse e-mail.
+        # Procura contas administrativas com esse e-mail.
         usuarios = Usuario.objects.filter(
             email__iexact=email,
             is_staff=True,
@@ -73,7 +76,7 @@ def login_administrador(request):
 
         usuario = None
 
-        # Tenta autenticar cada conta administrativa encontrada.
+        # Tenta autenticar cada conta encontrada.
         for candidato in usuarios:
             usuario = authenticate(
                 request,
@@ -96,15 +99,9 @@ def login_administrador(request):
 
     return render(request, 'login_administrador.html')
 
-#read: pagina de tutorias p/ os alunos
+
+# Sair da conta
 @login_required
-def tutoriais(request):
-    if request.user.is_staff:
-        return redirect('/admin/')
-
-    return render(request, 'tutoriais.html')
-
-
 def logout_usuarios(request):
     if request.method == 'POST':
         logout(request)
@@ -112,13 +109,15 @@ def logout_usuarios(request):
 
     return redirect('tutoriais')
 
-#verificar se o usuario é administrador
+
+# Verifica se o usuário é administrador
 def administrador_ativo(user):
-    return user.is_authenticated and user.is_staff 
+    return user.is_authenticated and user.is_staff and user.is_active
+
 
 somente_administrador = user_passes_test(
     administrador_ativo,
-    login_url ='login_administrador'
+    login_url='login_administrador'
 )
 
 
@@ -127,29 +126,36 @@ somente_administrador = user_passes_test(
 def gerenciar_tutoriais(request):
     tutoriais = Tutorial.objects.all()
 
-    return render(request, 'gerenciar_tutoriais.html', {
-        'tutoriais': tutoriais
-    })
+    return render(
+        request,
+        'gerenciar_tutoriais.html',
+        {'tutoriais': tutoriais}
+    )
 
-
-# Cadastrar um tutorial
+# Cadastrar um tutorial com arquivo de vídeo
 @somente_administrador
 def criar_tutoriais(request):
     if request.method == 'POST':
-        form = TutorialForm(request.POST)
+        form = TutorialForm(request.POST, request.FILES)
 
         if form.is_valid():
             form.save()
-            messages.success(request, 'Tutorial cadastrado com sucesso!')
+            messages.success(
+                request,
+                'Tutorial cadastrado com sucesso!'
+            )
             return redirect('gerenciar_tutoriais')
     else:
         form = TutorialForm()
 
-    return render(request, 'form_tutoriais.html', {
-        'form': form,
-        'titulo_pagina': 'Cadastrar tutorial',
-    })
-
+    return render(
+        request,
+        'form_tutoriais.html',
+        {
+            'form': form,
+            'titulo_pagina': 'Cadastrar tutorial',
+        }
+    )
 
 # Editar um tutorial existente
 @somente_administrador
@@ -157,45 +163,66 @@ def editar_tutorial(request, pk):
     tutorial = get_object_or_404(Tutorial, pk=pk)
 
     if request.method == 'POST':
-        form = TutorialForm(request.POST, instance=tutorial)
+        form = TutorialForm(
+            request.POST,
+            request.FILES,
+            instance=tutorial
+        )
 
         if form.is_valid():
             form.save()
-            messages.success(request, 'Tutorial atualizado com sucesso!')
+            messages.success(
+                request,
+                'Tutorial atualizado com sucesso!'
+            )
             return redirect('gerenciar_tutoriais')
     else:
         form = TutorialForm(instance=tutorial)
 
-    return render(request, 'form_tutoriais.html', {
-        'form': form,
-        'titulo_pagina': 'Editar tutorial',
-    })
+    return render(
+        request,
+        'form_tutoriais.html',
+        {
+            'form': form,
+            'titulo_pagina': 'Editar tutorial',
+        }
+    )
 
-# delete: excluir um tutorial
+# Excluir um tutorial
 @somente_administrador
 def excluir_tutorial(request, pk):
     tutorial = get_object_or_404(Tutorial, pk=pk)
 
     if request.method == 'POST':
         tutorial.delete()
-        messages.success(request, 'Tutorial excluído com sucesso!')
+        messages.success(
+            request,
+            'Tutorial excluído com sucesso!'
+        )
         return redirect('gerenciar_tutoriais')
 
-    return render(request, 'Suap/confirmar_exclusao.html', {
-        'tutorial': tutorial
-    })
+    return render(
+        request,
+        'confirmar_exclusao.html',
+        {'tutorial': tutorial}
+    )
 
-# read: mostrar aos alunos apenas os tutoriais publicados
-def lista_tutoriais(request):
-    tutoriais = Tutorial.objects.filter(publicado=True)
+# Página de tutoriais para os alunos
+@login_required
+def tutoriais(request):
+    if request.user.is_staff:
+        return redirect('gerenciar_tutoriais')
 
-    return render(request, 'Suap/tutoriais.html', {
-        'tutoriais': tutoriais
-    })
+    tutoriais_publicados = Tutorial.objects.filter(
+        publicado=True
+    )
 
+    return render(
+        request,
+        'tutoriais.html',
+        {'tutoriais': tutoriais_publicados}
+    )
 
+# Página base, caso seja utilizada em outras partes do projeto
 def base(request):
     return render(request, 'base.html')
-
-def tutoriais(request):
-    return render(request, 'tutoriais.html')

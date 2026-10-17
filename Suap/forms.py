@@ -1,6 +1,8 @@
+
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Usuario, Tutorial 
+from .models import Usuario, Tutorial
+
 
 class CadastroForm(UserCreationForm):
     nome_completo = forms.CharField(
@@ -13,7 +15,7 @@ class CadastroForm(UserCreationForm):
     foto_perfil = forms.ImageField(
         label='Foto de perfil',
         required=False
-)
+    )
 
     class Meta:
         model = Usuario
@@ -25,7 +27,7 @@ class CadastroForm(UserCreationForm):
             'password2'
         ]
 
-def clean_email(self):
+    def clean_email(self):
         email = self.cleaned_data['email'].lower().strip()
 
         if Usuario.objects.filter(email__iexact=email).exists():
@@ -35,46 +37,44 @@ def clean_email(self):
 
         return email
 
-def save(self, commit=True):
-    usuario = super().save(commit=False)
+    def save(self, commit=True):
+        usuario = super().save(commit=False)
 
-    email = self.cleaned_data['email'].lower().strip()
+        email = self.cleaned_data['email'].lower().strip()
 
-    usuario.username = email
-    usuario.email = email
-    usuario.nome_completo = self.cleaned_data['nome_completo']
-    usuario.foto_perfil = self.cleaned_data.get('foto_perfil')
+        usuario.username = email
+        usuario.email = email
+        usuario.nome_completo = self.cleaned_data['nome_completo']
+        usuario.foto_perfil = self.cleaned_data.get('foto_perfil')
 
-    if commit:
-        usuario.save()
+        if commit:
+            usuario.save()
 
-    return usuario
+        return usuario
 
 class TutorialForm(forms.ModelForm):
-     class meta:
-          model = Tutorial
-          fields = [
-               'titulo', 
-                'descricao', 
-                'video_urls', 
-                'publicado'
-            ]
-          
-          labels = {
-               'titulo': 'Título do tutorial',
-               'descricao': 'Descrição do tutorial',
-               'video_url': 'Link do vídeo',
-               'publicado': 'Disponibilidade para os alunos',
-            }
-          widgets = {
-               'titulo': forms.TextInput(attrs={
-                    'placeholder': 'exe.: Como acessar o boletim'
-               }),
-               'descricao': forms.Textarea(attrs={
-                    'rows': 4, 
-                    'placeholder': 'Explicar o que o aluno vai aprender com o tutorial'
-               }),
-               'video_url': forms. URLInput(attrs={
-                    'placeholder': 'https://...'
-               })
-            } 
+    class Meta:
+        model = Tutorial
+        fields = [
+            'titulo',
+            'descricao',
+            'video_arquivo',
+            'publicado'
+        ]
+
+        labels = {
+            'titulo': 'Título do tutorial',
+            'descricao': 'Descrição do tutorial',
+            'video_arquivo': 'Arquivo do vídeo (MP4)',
+            'publicado': 'Disponibilidade para os alunos',
+        }
+
+        widgets = {
+            'titulo': forms.TextInput(attrs={
+                'placeholder': 'Ex.: Como acessar o boletim'
+            }),
+            'descricao': forms.Textarea(attrs={
+                'rows': 4,
+                'placeholder': 'Explique o que o aluno vai aprender'
+            }),
+        }

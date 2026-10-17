@@ -30,9 +30,11 @@ class Tutorial(models.Model):
         verbose_name='Descrição'
     )
 
-    video_url = models.URLField(
-        blank=True,
-        verbose_name='Link do vídeo'
+   video_arquivo = models.FileField(
+    upload_to='tutoriais/',
+    blank=True,
+    null=True,
+    verbose_name='Arquivo do vídeo'
     )
 
     publicado = models.BooleanField(

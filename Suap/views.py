@@ -57,17 +57,24 @@ def login(request):
     return render(request, 'login.html')
 
 
-#login adiministrativo
+# Login administrativo
 def login_administrador(request):
     if request.method == 'POST':
-        email = request.POST.get('email', '').strip().lower()
+        email = request.POST.get('email', '').strip()
         senha = request.POST.get('senha', '')
 
-        usuario = authenticate(
-            request,
-            username=email,
-            password=senha
-        )
+        usuario_cadastrado = Usuario.objects.filter(
+            email__iexact=email
+        ).first()
+
+        usuario = None
+
+        if usuario_cadastrado:
+            usuario = authenticate(
+                request,
+                username=usuario_cadastrado.username,
+                password=senha
+            )
 
         if (
             usuario is not None
@@ -75,14 +82,16 @@ def login_administrador(request):
             and usuario.is_staff
         ):
             auth_login(request, usuario)
-            return redirect('/admin/')
+            return redirect('gerenciar_tutoriais')
 
         messages.error(
             request,
-            'Acesso administrativo negado. Verifique seus dados.'
+            'Acesso administrativo negado. Verifique seu e-mail e senha '
+            'e confirme se sua conta tem permissão administrativa.'
         )
 
     return render(request, 'login_administrador.html')
+
 
 #read: pagina de tutorias p/ os alunos
 @login_required
@@ -109,16 +118,18 @@ somente_administrador = user_passes_test(
     login_url ='login_administrador'
 )
 
-# read: vai listar todos os tutoriais disponivel
+
+# Listar todos os tutoriais no painel administrativo
 @somente_administrador
 def gerenciar_tutoriais(request):
-    tutoriais = Tutorial.objetcs.all()
+    tutoriais = Tutorial.objects.all()
 
-    return render(request, 'Suap/gerenciar_tutoriais.html',{
+    return render(request, 'gerenciar_tutoriais.html', {
         'tutoriais': tutoriais
     })
 
-# create: cadastro de tutorial 
+
+# Cadastrar um tutorial
 @somente_administrador
 def criar_tutoriais(request):
     if request.method == 'POST':
@@ -126,17 +137,18 @@ def criar_tutoriais(request):
 
         if form.is_valid():
             form.save()
-            messages.success(request, 'Tutorial cadastrado com sucesso.')
+            messages.success(request, 'Tutorial cadastrado com sucesso!')
             return redirect('gerenciar_tutoriais')
-        else:
-            form = TutorialForm()
+    else:
+        form = TutorialForm()
 
-        return render(request, 'Suap/form_tutorias.html',{
-            'form': form,
-            'titulo_pagina': 'Cadastrar tutoriais',
-        })
+    return render(request, 'form_tutoriais.html', {
+        'form': form,
+        'titulo_pagina': 'Cadastrar tutorial',
+    })
 
-# update: edita um tutorial existente
+
+# Editar um tutorial existente
 @somente_administrador
 def editar_tutorial(request, pk):
     tutorial = get_object_or_404(Tutorial, pk=pk)
@@ -151,7 +163,7 @@ def editar_tutorial(request, pk):
     else:
         form = TutorialForm(instance=tutorial)
 
-    return render(request, 'Suap/form_tutorial.html', {
+    return render(request, 'form_tutoriais.html', {
         'form': form,
         'titulo_pagina': 'Editar tutorial',
     })

@@ -16,6 +16,7 @@
 
         <h2>{{ titulo_pagina }}</h2>
 
+        
         <form method="post">
             {% csrf_token %}
 
@@ -28,6 +29,7 @@
                     <label for="{{ field.id_for_label }}">
                         {{ field.label }}
                     </label>
+
                     {{ field }}
                     {{ field.errors }}
 
@@ -42,7 +44,7 @@
 
         <p class="login-link">
             <a href="{% url 'gerenciar_tutoriais' %}">
-                Voltar aos tutoriais
+                Cancelar e voltar aos tutoriais
             </a>
         </p>
     </main>
